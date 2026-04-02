@@ -66,6 +66,7 @@ void Server::acceptClients() {
         }
 
         cout << "Novo cliente conectado!" << endl;
+        connectedClients++;
 
         thread clientThread(&Server::handleClient, this, clientSocket);
         clientThread.detach();
@@ -103,6 +104,7 @@ void Server::handleClient(SOCKET clientSocket) {
         send(clientSocket, response.c_str(), response.size(), 0);
     }
 
+    connectedClients--;
     closesocket(clientSocket);
 }
 
@@ -112,4 +114,8 @@ void Server::cleanup() {
     }
 
     WSACleanup();
+}
+
+int Server::getConnectedClients() {
+    return connectedClients;
 }

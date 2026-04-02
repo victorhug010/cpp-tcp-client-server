@@ -3,6 +3,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <string>
+#include <atomic>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -12,6 +13,7 @@ private:
     sockaddr_in serverAddr;
     int port;
     std::string clientName;
+    std::atomic<int> connectedClients = 0;
 
 public:
     Server(int port);
@@ -20,4 +22,5 @@ public:
     void acceptClients();
     void handleClient(SOCKET clientSocket);
     void cleanup();
+    int getConnectedClients();
 };

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(KEYFLUX_SERVER
     src/main.cpp
     src/server.cpp
+    src/commands.cpp
 )
 
 add_executable(KEYFLUX_CLIENT

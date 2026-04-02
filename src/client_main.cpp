@@ -21,7 +21,6 @@ int main() {
     srand(time(NULL));
     string randomName = clientNames[rand() % clientNames.size()];
     Client client("127.0.0.1", 8080, randomName);
-
     if (!client.initialize()) {
         return 1;
     }
@@ -32,6 +31,5 @@ int main() {
 
     client.sendMessages();
     client.cleanup();
-
     return 0;
 }
